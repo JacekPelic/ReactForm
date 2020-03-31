@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './TextField.css'
 
 class TextField extends Component{
     constructor(props){
@@ -7,14 +8,18 @@ class TextField extends Component{
             value: props.defaultValue || '',
             isValid: undefined
         }
-        this.handleChange = this.handleChange.bind(this)
+        this.updateValue = this.updateValue.bind(this)
     }
 
-    handleChange(event){
-        this.setState({
-            isValid: event.target.value.trim() !== "",
-            value: event.target.value});
-            this.props.isValid(this.props.fieldID,this.state.isValid)
+    updateValue(event){
+        let value = event.target.value
+        let isValid = value.trim() !== ""
+
+        this.setState((state, props) => ({
+            isValid: isValid,
+            value: value}))
+
+        this.props.isValid(this.props.fieldID, isValid)
     }
 
     render(){
@@ -27,7 +32,7 @@ class TextField extends Component{
             inputClasses = inputCssClasses
         }
         else{
-            let validity = this.state.isValid ? 'valid' : 'inValid'
+            let validity = this.state.isValid ? 'valid' : 'invalid'
             inputClasses = `${inputCssClasses} ${validity}`
 
             errorMessageClasses = this.state.isValid ? 'd-none' : ''
@@ -36,7 +41,7 @@ class TextField extends Component{
         return(
             <div className="input_container">
                 <label>{this.props.label}</label>
-                <input type="text" className={inputClasses} value={this.state.value} placeholder={this.props.label} onChange={this.handleChange}></input>
+                <input type="text" className={inputClasses} value={this.state.value} placeholder={this.props.label} onChange={this.updateValue} onBlur={this.updateValue}></input>
                 <span className={errorMessageClasses}>Field can't be empty!</span>
             </div>
         )

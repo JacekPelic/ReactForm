@@ -9,43 +9,32 @@ const selectOptions = ["option one","option two","option three","option four"]
 
 function SecondStep(props) {
 
-    const [fieldValitators, setFieldValidators] = useState([false,false,false,false])
+    let fieldValidators= [false,false,false,false,false,false,false,false,false,false]
 
     const [nextButtonDisabled, setNextButtonDisabled] = useState(false)
     const [stepValid, setstepValid] = useState(false)
-
-    const [nameFieldValid, setNameFieldValid] = useState(false)
-    const [emailFieldValid, setEmailFieldValid] = useState(false)
-    const [phoneFieldValid, setPhoneFieldValid] = useState(false)
-    const [cprFieldValid, setCprFieldValid] = useState(false)
-    const [martialStatusFieldValid, setMartialStatusFieldValid] = useState(false)
-    const [citizenshipFieldValid, setCitizenshipFieldValid] = useState(false)
-    const [houseTypeFieldValid, setHouseTypeFieldValid] = useState(false)
-    const [consent1FieldValid, setConsent1FieldValid] = useState(false)
-    const [consent2FieldValid, setConsent2FieldValid] = useState(false)
-    const [consent3FieldValid, setConsent3FieldValid] = useState(false)
 
     let nameField = <TextField fieldID="0" isValid={isFieldValid} label="First and last name"></TextField>;
     let emailField = <TextField fieldID="1" isValid={isFieldValid} label="Email"></TextField>
     let phoneField = <TextField fieldID="2" isValid={isFieldValid} label="Phone"></TextField>
     let cprField = <TextField fieldID="3" isValid={isFieldValid} label="CPR"></TextField>
-    let martialStatusField = <DropdownField placeholder="Pick an option" selectOptions={selectOptions}></DropdownField>
-    let citizenshipField = <DropdownField placeholder="Pick an option" selectOptions={selectOptions}></DropdownField>
-    let houseTypeField = <DropdownField placeholder="Pick an option" selectOptions={selectOptions}></DropdownField>
-    let consent1Field = <CheckboxField text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mollis nisi."></CheckboxField>
-    let consent2Field = <CheckboxField text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mollis nisi."></CheckboxField>
-    let consent3Field = <CheckboxField text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mollis nisi."></CheckboxField>
+    let martialStatusField = <DropdownField fieldID="4" isValid={isFieldValid} placeholder="Pick an option" label="Select first option" selectOptions={selectOptions}></DropdownField>
+    let citizenshipField = <DropdownField fieldID="5" isValid={isFieldValid} placeholder="Pick an option" label="Select second option" selectOptions={selectOptions}></DropdownField>
+    let houseTypeField = <DropdownField fieldID="6" isValid={isFieldValid} placeholder="Pick an option" label="Select third option" selectOptions={selectOptions}></DropdownField>
+    let consentFirstField = <CheckboxField fieldID="7" isValid={isFieldValid} isRequired='true' text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mollis nisi."></CheckboxField>
+    let consentSecondField = <CheckboxField fieldID="8" isValid={isFieldValid} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mollis nisi."></CheckboxField>
+    let consentThirdField = <CheckboxField fieldID="9" isValid={isFieldValid} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mollis nisi."></CheckboxField>
 
-    let inputFields = [nameField, emailField, phoneField, cprField, martialStatusField, citizenshipField, houseTypeField, consent1Field, consent2Field, consent3Field]
+    let inputFields = [nameField, emailField, phoneField, cprField, martialStatusField, citizenshipField, houseTypeField, consentFirstField, consentSecondField, consentThirdField]
 
-    let fieldValidatorArray = [false, false, false, false]
-
-    function isFieldValid(fieldID, isValid){fieldValidatorArray[fieldID] = isValid}
+    function isFieldValid(fieldID, isValid){
+        fieldValidators[fieldID]=isValid
+    }
 
     function isStepValid() {
         
         let isStepValid = true;
-        fieldValidatorArray.map((validator, index) => {
+        fieldValidators.map((validator, index) => {
             isStepValid &= validator
         })
         return isStepValid
@@ -56,10 +45,11 @@ function SecondStep(props) {
         if(isStepValid())
         {
             //setNextButtonDisabled(false)
-            return props.onClick();
+            console.log("Moved for the next step!")
         }
         else
         {
+            console.log("Invalid form!")
             //setNextButtonDisabled(true)
         }
 
@@ -109,17 +99,17 @@ function SecondStep(props) {
             </div>
             <div className="row my-2">
                 <div className="col-12">
-                    {consent1Field}
+                    {consentFirstField}
                 </div>
             </div>
             <div className="row my-2">
                 <div className="col-12">
-                    {consent2Field}
+                    {consentSecondField}
                 </div>
             </div>
             <div className="row my-2">
                 <div className="col-12">
-                    {consent3Field}
+                    {consentThirdField}
                 </div>
             </div>
             <NextButton isDisabled={nextButtonDisabled} onClick={onClickHandler} text="Go to the next tab"></NextButton>
