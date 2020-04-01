@@ -1,11 +1,12 @@
 import React from 'react';
+import './DropdownField.css'
 
 class DropdownField extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            value: props.defaultValue,
-            isValid: false
+            value: props.defaultValue || undefined,
+            isValid: undefined
         }
 
     this.UpdateValue = this.UpdateValue.bind(this)
@@ -20,7 +21,15 @@ class DropdownField extends React.Component{
     }
 
     render(){
-        
+        let selectClasses = 'form-control w-100'
+        let errorMessageClasses = 'd-none'
+
+        if(typeof this.state.isValid !== 'undefined'){
+            let validity = this.state.isValid ? 'valid' : 'invalid'
+            selectClasses += ` ${validity}`
+
+            errorMessageClasses = this.state.isValid ? 'd-none' : 'text-danger'
+        }        
         
         let placeholder = <option key={0} value="default" disabled>{this.props.placeholder}</option>
         const options = this.props.selectOptions.map((value, step) =>{
@@ -32,10 +41,10 @@ class DropdownField extends React.Component{
         return(
             <div className="input_container w-100">
                 <label>{this.props.label}</label>
-                <select defaultValue="default" onChange={this.UpdateValue} onBlur={this.UpdateValue} className="form-control w-100">            
+                <select defaultValue="default" onChange={this.UpdateValue} onBlur={this.UpdateValue} className={selectClasses}>
                     {options}
                 </select>
-                <span>Field can't be empty!</span>
+                <span className={errorMessageClasses}>Field can't be empty!</span>
             </div>
         )
     }

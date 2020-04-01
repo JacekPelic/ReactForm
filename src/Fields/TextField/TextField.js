@@ -5,7 +5,7 @@ class TextField extends Component{
     constructor(props){
         super(props)
         this.state = {
-            value: props.defaultValue || '',
+            value: undefined,
             isValid: undefined
         }
         this.updateValue = this.updateValue.bind(this)
@@ -23,19 +23,14 @@ class TextField extends Component{
     }
 
     render(){
-        const inputCssClasses = "w-100"
-
-        let inputClasses = ''
+        let inputClasses = 'w-100'
         let errorMessageClasses = 'd-none'
 
-        if(this.state.isValid == null){
-            inputClasses = inputCssClasses
-        }
-        else{
+        if(typeof this.state.isValid !== 'undefined'){
             let validity = this.state.isValid ? 'valid' : 'invalid'
-            inputClasses = `${inputCssClasses} ${validity}`
+            inputClasses += ` ${validity}`
 
-            errorMessageClasses = this.state.isValid ? 'd-none' : ''
+            errorMessageClasses = this.state.isValid ? 'd-none' : 'text-danger'
         }
 
         return(

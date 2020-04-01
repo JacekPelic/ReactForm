@@ -27,12 +27,19 @@ class CheckboxField extends React.Component{
     }
 
     render(){
+        let errorMessageClasses = 'd-none';
+
+        if(typeof this.state.value !== 'undefined'){
+            errorMessageClasses = this.state.isValid ? 'd-none' : 'text-danger'            
+        }
+
         return (
             <div className="form-check">
                 <label className="form-check-label">
-                    <input className="form-check-input" onBlur={this.UpdateValue} type="checkbox"  value={this.state.value}/>
+                    <input className="form-check-input" onBlur={this.UpdateValue} onChange={this.UpdateValue} type="checkbox"  value={this.state.value}/>
                     {this.state.text}
                 </label>
+                <span className={errorMessageClasses}>Checkbox is required!</span>
             </div>
         )
     }

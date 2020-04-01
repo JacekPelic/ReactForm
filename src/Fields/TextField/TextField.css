@@ -1,7 +1,3 @@
 .invalid {
-    background: #f3b3bb;
-}
-
-input + span{
-    color: red;
+    background: #f3b3bb !important;
 }
