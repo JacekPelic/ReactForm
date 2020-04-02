@@ -17,6 +17,7 @@ class SecondStep extends Component{
         this.state={
             formFields: {
                 name:{
+                    name:"name",
                     value: "",
                     label: "First and last name",
                     valid: false,
@@ -26,6 +27,7 @@ class SecondStep extends Component{
                     }
                 },
                 email:{
+                    name:"email",
                     value: "",
                     label: "Email",
                     valid: false,
@@ -35,6 +37,7 @@ class SecondStep extends Component{
                     }
                 },
                 phone:{
+                    name:"phone",
                     value: "",
                     label: "Phone",
                     valid: false,
@@ -44,6 +47,7 @@ class SecondStep extends Component{
                     }
                 },
                 cpr:{
+                    name:"cpr",
                     value: "",
                     label: "CPR",
                     valid: false,
@@ -51,11 +55,47 @@ class SecondStep extends Component{
                     validationRules:{
                         required: true
                     }
+                },
+                martialStatus:{
+                    name:"martialStatus",
+                    value: "",
+                    label: "Select martial status",
+                    placeholder: "Select option",
+                    valid: false,
+                    touche: false,
+                    selectOptions: {selectOptions},
+                    validationRules:{
+                        required: true
+                    }
+                },
+                citizenship:{
+                    name:"citizenship",
+                    value: "",
+                    label: "Select citizenship",
+                    placeholder: "Select option",
+                    valid: false,
+                    touche: false,
+                    selectOptions: {selectOptions},
+                    validationRules:{
+                        required: true
+                    }
+                },
+                houseType:{
+                    name:"houseType",
+                    value: "",
+                    label: "Select type of house",
+                    placeholder: "Select option",
+                    valid: false,
+                    touche: false,
+                    selectOptions: {selectOptions},
+                    validationRules:{
+                        required: true
+                    }
                 }
             }
         }
         this.changeHandler = this.changeHandler.bind(this)
-    }
+    }    
     
     changeHandler(event){
         const name = event.target.name;
@@ -76,30 +116,45 @@ class SecondStep extends Component{
     }
 
     render(){
-        const nameField = <TextField name="name"
+        const nameField = <TextField name={this.state.formFields.name.name}
                                     value={this.state.formFields.name.value}
                                     label={this.state.formFields.name.label}
                                     onChange={this.changeHandler}>
                         </TextField>;
-        let emailField = <TextField name="email"
+        const emailField = <TextField name={this.state.formFields.email.name}
                                     value={this.state.formFields.email.value}
                                     label={this.state.formFields.email.label}
                                     onChange={this.changeHandler}>
                         </TextField>;
-        let phoneField = <TextField name="phone"
+        const phoneField = <TextField name={this.state.formFields.phone.name}
                                     value={this.state.formFields.phone.value}
                                     label={this.state.formFields.phone.label}
                                     onChange={this.changeHandler}>
                         </TextField>;
-        let cprField = <TextField name="cpr"
+        const cprField = <TextField name={this.state.formFields.cpr.name}
                                 value={this.state.formFields.cpr.value}
                                 label={this.state.formFields.cpr.label}
                                 onChange={this.changeHandler}>
                         </TextField>;
-        
-        // let martialStatusField = <DropdownField fieldID="4" isValid={isFieldValid} placeholder="Pick an option" label="Select first option" selectOptions={selectOptions}></DropdownField>
-        // let citizenshipField = <DropdownField fieldID="5" isValid={isFieldValid} placeholder="Pick an option" label="Select second option" selectOptions={selectOptions}></DropdownField>
-        // let houseTypeField = <DropdownField fieldID="6" isValid={isFieldValid} placeholder="Pick an option" label="Select third option" selectOptions={selectOptions}></DropdownField>
+        const martialStatusField = <DropdownField name={this.state.formFields.martialStatus.name}
+                                        label={this.state.formFields.martialStatus.label}
+                                        placeholder={this.state.formFields.martialStatus.placeholder}
+                                        selectOptions={selectOptions}
+                                        onChange={this.changeHandler}>
+                                    </DropdownField>;
+        const citizenshipField = <DropdownField name={this.state.formFields.citizenship.name}
+                                        label={this.state.formFields.citizenship.label}
+                                        placeholder={this.state.formFields.citizenship.placeholder}
+                                        selectOptions={selectOptions}
+                                        onChange={this.changeHandler}>
+                                    </DropdownField>;
+        const houseTypeField = <DropdownField name={this.state.formFields.houseType.name}
+                                        label={this.state.formFields.houseType.label}
+                                        placeholder={this.state.formFields.houseType.placeholder}
+                                        selectOptions={selectOptions}
+                                        onChange={this.changeHandler}>
+                                    </DropdownField>;                                                                        
+                
         // let consentFirstField = <CheckboxField fieldID="7" isValid={isFieldValid} isRequired='true' text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mollis nisi."></CheckboxField>
         // let consentSecondField = <CheckboxField fieldID="8" isValid={isFieldValid} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mollis nisi."></CheckboxField>
         // let consentThirdField = <CheckboxField fieldID="9" isValid={isFieldValid} text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mollis nisi."></CheckboxField>
@@ -126,7 +181,7 @@ class SecondStep extends Component{
                         {cprField}
                     </div>                
                 </div>
-                {/* <div className="row my-2">
+                <div className="row my-2">
                     <div className="col-12">
                         {martialStatusField}
                     </div>
@@ -141,7 +196,7 @@ class SecondStep extends Component{
                         {houseTypeField}
                     </div>
                 </div>
-                <div className="row my-2">
+                {/* <div className="row my-2">
                     <div className="col-12">
                         
                     </div>
