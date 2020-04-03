@@ -1,13 +1,18 @@
-import React, {useState, Component} from 'react'
+import React, {Component} from 'react'
 import TextField from '../../Fields/TextField/TextField'
 import DropdownField from '../../Fields/DropdownField/DropdownField'
 import CheckboxField from '../../Fields/CheckboxField/CheckboxField'
 import NextButton from '../../Buttons/NextButton/NextButton'
 import BackButton from '../../Buttons/BackButton/BackButton'
-import { render } from '@testing-library/react'
 import Validate from '../../Validation/Validate'
 
-const selectOptions = ["option one","option two","option three","option four"]
+const selectOptions = [
+    {value: "", display: "Chose a value"},
+    {value: "option one", display: "option one"},
+    {value: "option two", display: "option two"},
+    {value: "option three", display: "option three"},
+    {value: "option four", display: "option four"}
+]
 
 class SecondStep extends Component{
 
@@ -80,10 +85,10 @@ class SecondStep extends Component{
                         required: true
                     }
                 },
-                houseType:{
-                    name:"houseType",
+                hasExtraIncome:{
+                    name:"extraIncome",
                     value: "",
-                    label: "Select type of house",
+                    label: "Do you have extra income?",
                     placeholder: "Select option",
                     valid: false,
                     touched: false,
@@ -109,6 +114,9 @@ class SecondStep extends Component{
                     valid: false,
                     touched: false,
                     validationRules:{
+                    },
+                    child:{
+
                     }
                 },
                 consentThird:{
@@ -246,13 +254,13 @@ class SecondStep extends Component{
             onBlur={this.touchHandler}>
         </DropdownField>;
 
-        const houseTypeField = <DropdownField name={this.state.formFields.houseType.name}
-            value={this.state.formFields.houseType.value}
-            label={this.state.formFields.houseType.label}
-            placeholder={this.state.formFields.houseType.placeholder}
+        const houseTypeField = <DropdownField name={this.state.formFields.hasExtraIncome.name}
+            value={this.state.formFields.hasExtraIncome.value}
+            label={this.state.formFields.hasExtraIncome.label}
+            placeholder={this.state.formFields.hasExtraIncome.placeholder}
             selectOptions={selectOptions}
-            touched={this.state.formFields.houseType.touched}
-            valid={this.state.formFields.houseType.valid}
+            touched={this.state.formFields.hasExtraIncome.touched}
+            valid={this.state.formFields.hasExtraIncome.valid}
             onChange={this.changeHandler}
             onBlur={this.touchHandler}>
         </DropdownField>;

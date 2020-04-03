@@ -3,7 +3,13 @@ import SliderField from '../../Fields/SliderField/SliderField'
 import DropdownField from '../../Fields/DropdownField/DropdownField'
 import NextButton from '../../Buttons/NextButton/NextButton'
 
-const selectOptions = ["option one","option two","option three","option four"]
+const selectOptions = [
+  {value: "", display: "Chose a value"},
+  {value: "option one", display: "option one"},
+  {value: "option two", display: "option two"},
+  {value: "option three", display: "option three"},
+  {value: "option four", display: "option four"}
+]
 
 function FirstStep(props){
   
