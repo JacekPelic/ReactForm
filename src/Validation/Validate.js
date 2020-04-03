@@ -18,7 +18,10 @@ const minWordsValidator = (value, minWordsNumber) => {
 }
 
 const isRequired = (value) =>{
-    return value.trim() !== '';	
+    if(typeof(value) === 'boolean')
+        return value;
+        
+    return value.trim() !== '';
 }
 
 export default Validate;
