@@ -7,9 +7,9 @@ const DropdownField = (props) =>{
     let errorMessageClass = isValid ? "d-none" : "text-danger";
 
     return(
-        <div className="input_container w-100">
+        <div className="w-100">
             <label>{props.label}</label>
-            <select className={selectClass} name={props.name} onChange={props.onChange} onBlur={props.onBlur} value={props.value}>
+            <select className={selectClass} {...props}>
                 {props.selectOptions.map((option, step) => (
                     <option key={step+1} value={option.value} disabled={step === 0}>
                         {option.display}

@@ -11,3 +11,34 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.radio-options{
+  display: flex;
+}
+
+.radio-option{
+  flex: 1;
+  border: 1px solid #d3d3d3;
+}
+
+.radio-option:first-child{
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.radio-option:not(:first-child){
+  border-left: none;
+}
+
+.radio-option:last-child{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.radio-selected{
+  background-color: #eeffef;
+}
+
+.radio-label{
+  cursor: pointer;
+}
