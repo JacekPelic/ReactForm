@@ -25,7 +25,9 @@ const FirstStep = (props) => {
           <p className= "col text-center">EXAMPLE KR/MD</p>
         </div>
         <div className="row">
-          {loanPurpose}
+          <div className="col-12">
+            {loanPurpose}
+          </div>
         </div>
         <NextButton isDisabled="" onClick={() => props.nextStep()} text="Go to the next tab"></NextButton>
     </div>   

@@ -7,7 +7,6 @@ import NextButton from '../../Buttons/NextButton/NextButton'
 import RadioField from '../../Fields/RadioField/RadioField'
 
 const selectOptions = [
-    {value: "", display: "Chose a value"},
     {value: "option one", display: "option one"},
     {value: "option two", display: "option two"},
     {value: "option three", display: "option three"},
@@ -16,9 +15,8 @@ const selectOptions = [
 
 const SecondStep = (props) => {
 
-
 const nextButtonHandler = () =>{
-        if(this.isStepValid())
+        if(props.isStepValid())
             props.nextStep();            
     }
 
@@ -108,6 +106,11 @@ const nextButtonHandler = () =>{
                     </div>
                 </div>
                 <NextButton onClick={() => nextButtonHandler()} text="Go to the next tab"></NextButton>
+                <a href="#" onClick={() => props.previousStep()}>
+                    <font>
+                        Back
+                    </font>
+                </a>
             </div>
         );
 }

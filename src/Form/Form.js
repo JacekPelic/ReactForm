@@ -2,14 +2,20 @@ import React from 'react'
 import FirstStep from '../Steps/FirstStep/FirstStep'
 import SecondStep from '../Steps/SecondStep/SecondStep';
 import Validate from '../Validation/Validate'
+import ThirdStep from '../Steps/ThirdStep/ThirdStep';
 
 const selectOptions = [
-    {value: "", display: "Chose a value"},
     {value: "option one", display: "option one"},
     {value: "option two", display: "option two"},
     {value: "option three", display: "option three"},
     {value: "option four", display: "option four"}
 ]
+
+let yearSelectOptions = [];
+
+for (let i = 1920; i <= new Date().getFullYear(); i++){
+    yearSelectOptions.push({value:i, display:i});
+}
 
 class Form extends React.Component{
     constructor(props){
@@ -57,7 +63,6 @@ class Form extends React.Component{
                         name:"loanPurpose",
                         value:"",
                         label: "Select loan purpose",
-                        placeholder: "Select option",
                         valid: false,
                         touched: false,
                         selectOptions: selectOptions,
@@ -220,11 +225,173 @@ class Form extends React.Component{
                         onBlur: this.onBlur,
                         onFocus: this.onFocus
                     }
+                },
+                {
+                    employmentStatus:{
+                        name:"employmentStatus",
+                        value: "",
+                        label: "Employment status (choose the one that best suits you)",
+                        valid: false,
+                        touched: false,
+                        selectOptions: [
+                            {value: "Hourly wage earner", display: "Hourly wage earner"},
+                            {value: "Employe salaried employee", display: "Employe salaried employee"},
+                            {value: "supervisor", display: "supervisor"},
+                            {value: "During Education", display: "During Education"},
+                            {value: "Trainee / Apprentice", display: "Trainee / Apprentice"},
+                            {value: "early retirement", display: "early retirement"},
+                            {value: "senior citizen", display: "senior citizen"},
+                            {value: "Available", display: "Available"},
+                            {value: "Stay-at-home", display: "Stay-at-home"},
+                            {value: "Self employed", display: "Self employed"},
+                            {value: "Early retirement", display: "Early retirement"}
+                        ],
+                        validationRules:{
+                            required: true
+                        },
+                        onChange: this.onChange,
+                        onBlur: this.onBlur,
+                        onFocus: this.onFocus
+                    },
+                    employmentSinceMonth:{
+                        name:"employmentSinceMonth",
+                        value: "",
+                        label: "Month",
+                        valid: false,
+                        touched: false,
+                        selectOptions: [
+                            {value: "January", display: "January"},
+                            {value: "February", display: "February"},
+                            {value: "March", display: "March"},
+                            {value: "April", display: "April"},
+                            {value: "May", display: "May"},
+                            {value: "June", display: "June"},
+                            {value: "July", display: "July"},
+                            {value: "August", display: "August"},
+                            {value: "September", display: "September"},
+                            {value: "October", display: "October"},
+                            {value: "November", display: "November"},
+                            {value: "December", display: "December"}
+                        ],
+                        validationRules:{
+                            required: true
+                        },
+                        onChange: this.onChange,
+                        onBlur: this.onBlur,
+                        onFocus: this.onFocus
+                    },
+                    employmentSinceYear:{
+                        name:"employmentSinceYear",
+                        value: "",
+                        label: "Year",
+                        valid: false,
+                        touched: false,
+                        selectOptions: yearSelectOptions,
+                        validationRules:{
+                            required: true
+                        },
+                        onChange: this.onChange,
+                        onBlur: this.onBlur,
+                        onFocus: this.onFocus
+                    },
+                    householdAmountAverage:{
+                        name:"householdAmountAverage",
+                        value: "",
+                        label: "Household average amount available",
+                        valid: false,
+                        touched: false,
+                        validationRules:{
+                            required: true
+                        },
+                        onChange: this.onChange,
+                        onBlur: this.onBlur,
+                        onFocus: this.onFocus
+                    },
+                    memberOfUnemploymentFound:{
+                        name:"memberOfUnemploymentFound",
+                        value: "",
+                        label: "Member of the unemployment fund",
+                        valid: false,
+                        touched: false,
+                        radioOptions: [
+                            {value: "yes", display: "Yes"},
+                            {value: "no", display: "No"}
+                        ],
+                        onChange: this.onChange,
+                        onBlur: this.onBlur,
+                        onFocus: this.onFocus                                     
+                    },
+                    otherSourcesOfIncome:{
+                        name:"otherSourcesOfIncome",
+                        value: "",
+                        label: "Do you have other sources of income?",
+                        valid: false,
+                        touched: false,
+                        radioOptions: [
+                            {value: "yes", display: "Yes"},
+                            {value: "no", display: "No"}
+                        ],
+                        onChange: this.onChange,
+                        onBlur: this.onBlur,
+                        onFocus: this.onFocus                                     
+                    },
+                    childrenInHome:{
+                        name:"childrenInHome",
+                        value: "",
+                        label: "Number of children living at home under 18 years",
+                        valid: false,
+                        touched: false,
+                        selectOptions: [
+                            {value: "0", display: "0"},
+                            {value: "1", display: "1"},
+                            {value: "2", display: "2"},
+                            {value: "3", display: "3"},
+                            {value: "4", display: "4"},
+                            {value: "5", display: "5"},
+                            {value: "6+", display: "6+"}
+                        ],
+                        onChange: this.onChange,
+                        onBlur: this.onBlur,
+                        onFocus: this.onFocus                                     
+                    },
+                    carsInHome:{
+                        name:"carsInHome",
+                        value: "",
+                        label: "Number of cars in the household (excluding company car)",
+                        valid: false,
+                        touched: false,
+                        selectOptions: [
+                            {value: "0", display: "0"},
+                            {value: "1", display: "1"},
+                            {value: "2", display: "2"},
+                            {value: "3", display: "3"},
+                            {value: "4", display: "4"},
+                            {value: "5+", display: "5+"},
+                        ],
+                        onChange: this.onChange,
+                        onBlur: this.onBlur,
+                        onFocus: this.onFocus                                     
+                    },
+                    registredInRki:{
+                        name:"registredInRki",
+                        value: "",
+                        label: "Are you registered in RKI?",
+                        valid: false,
+                        touched: false,
+                        selectOptions: [
+                            {value: "yes", display: "Yes"},
+                            {value: "no", display: "No"}
+                        ],
+                        onChange: this.onChange,
+                        onBlur: this.onBlur,
+                        onFocus: this.onFocus                                     
+                    },
                 }
             ]            
         }
     }
 
+    
     onChange(event){
         const name = event.target.name;
         const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
@@ -268,6 +435,7 @@ class Form extends React.Component{
 
         updatedField.touched = true;
         updatedField.valid = Validate(value, updatedField.validationRules)
+        updatedField.selected = false;
 
         updatedFormStepFields[name] = updatedField;
 
@@ -284,7 +452,8 @@ class Form extends React.Component{
         const updatedFormStepFields = updatedForm[this.state.currentStep];
         const updatedField = updatedFormStepFields[name];
 
-        updatedField.valid = true
+        updatedField.valid = true;
+        updatedField.selected = true;
 
         updatedFormStepFields[name] = updatedField;
 
@@ -301,8 +470,38 @@ class Form extends React.Component{
         this.setState({currentStep: this.state.currentStep - 1})
     }
 
+    isStepValid(){
+        const updatedForm = Object.assign({}, this,this.state.formFields);        
+        const updatedFormFields = updatedForm[this.state.currentStep];
+
+        let isStepValid = true;
+
+        for (let field in updatedFormFields) {
+            let updatedField = updatedFormFields[field];
+            if(updatedField.visable === false){
+                continue;
+            }
+            updatedField.touched = true;
+            updatedField.valid = Validate(updatedField.value, updatedField.validationRules);
+
+            updatedFormFields[field] = updatedField;
+
+            isStepValid = isStepValid && updatedField.valid;
+        }
+
+        this.setState({
+            formFields: updatedForm
+        });
+
+        return isStepValid;
+    }
+
     render(){
-        const Steps = [ <FirstStep {...this.state.formFields[0]} nextStep={() => this.nextStep()}/>, <SecondStep {...this.state.formFields[1]} nextStep={() => this.nextStep()} previousStep={() => this.previousStep()}/>]
+        const Steps = [ 
+        <FirstStep {...this.state.formFields[0]} nextStep={() => this.nextStep()} isStepValid={() => this.isStepValid()}/>,
+        <SecondStep {...this.state.formFields[1]} nextStep={() => this.nextStep()} previousStep={() => this.previousStep()} isStepValid={() => this.isStepValid()}/>,
+        <ThirdStep {...this.state.formFields[2]} nextStep={() => this.nextStep()} previousStep={() => this.previousStep()} isStepValid={() => this.isStepValid()}/>
+        ]
 
         return(
         <div>

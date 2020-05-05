@@ -38,5 +38,31 @@
 }
 
 .invalid {
-  background: #f3b3bb !important;
+  background: #fff7f8 !important;
+}
+
+.field-input{
+    width: 100%;
+    padding: 15px 10px 0px 10px;
+    height: 40px;
+    border-color: #d3d3d3;
+    border-width: 1px;
+    border-radius: 5px;
+    border-style: solid;
+    outline: none;
+}
+
+.field-input:focus{
+  border-color: #277ccd;
+}
+
+.blue-text{
+  color: #277ccd;;
+}
+
+.helper-text{
+    position: absolute;
+    padding-top: 5px;
+    left: 27px;
+    font-size: 10px;
 }
