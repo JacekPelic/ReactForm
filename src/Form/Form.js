@@ -3,6 +3,7 @@ import FirstStep from '../Steps/FirstStep/FirstStep'
 import SecondStep from '../Steps/SecondStep/SecondStep';
 import Validate from '../Validation/Validate'
 import ThirdStep from '../Steps/ThirdStep/ThirdStep';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 const selectOptions = [
     {value: "option one", display: "option one"},
@@ -497,15 +498,19 @@ class Form extends React.Component{
     }
 
     render(){
-        const Steps = [ 
-        <FirstStep {...this.state.formFields[0]} nextStep={() => this.nextStep()} isStepValid={() => this.isStepValid()}/>,
-        <SecondStep {...this.state.formFields[1]} nextStep={() => this.nextStep()} previousStep={() => this.previousStep()} isStepValid={() => this.isStepValid()}/>,
-        <ThirdStep {...this.state.formFields[2]} nextStep={() => this.nextStep()} previousStep={() => this.previousStep()} isStepValid={() => this.isStepValid()}/>
+        const steps = [ 
+        <FirstStep {...this.state.formFields[0]} title="Loan Purpose"
+        nextStep={() => this.nextStep()} isStepValid={() => this.isStepValid()}/>,
+        <SecondStep {...this.state.formFields[1]} title="About You" 
+        nextStep={() => this.nextStep()} previousStep={() => this.previousStep()} isStepValid={() => this.isStepValid()}/>,
+        <ThirdStep {...this.state.formFields[2]} title="Private Economy" 
+        nextStep={() => this.nextStep()} previousStep={() => this.previousStep()} isStepValid={() => this.isStepValid()}/>
         ]
 
         return(
         <div>
-            {Steps[this.state.currentStep]}
+            <ProgressBar steps={steps} currentStep= {this.state.currentStep}></ProgressBar>
+            {steps[this.state.currentStep]}
         </div>
         )
     }

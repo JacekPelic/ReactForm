@@ -66,3 +66,35 @@
     left: 27px;
     font-size: 10px;
 }
+
+.circle{
+    height: 20px;
+    width: 20px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    line-height: 20px;
+}
+
+.circle-line{
+  border: 1px solid #d3d3d3;
+  position: absolute;
+  top: 25%;
+  left: 53%;
+  width: 95%;
+  z-index: -1;
+}
+
+.circle-line-completed{
+  border-color: rgb(62, 187, 57);
+}
+
+.center{
+  justify-content: center;
+  align-items: center;
+}
+
+.title{
+  font-size: 12px;
+}
+
